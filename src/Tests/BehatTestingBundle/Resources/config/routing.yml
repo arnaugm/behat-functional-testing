@@ -1,0 +1,3 @@
+tests_behat_testing_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TestsBehatTestingBundle:Default:index }

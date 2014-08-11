@@ -1,0 +1,4 @@
+tests_behat_testing:
+    resource: "@TestsBehatTestingBundle/Resources/config/routing.yml"
+    prefix:   /
+
