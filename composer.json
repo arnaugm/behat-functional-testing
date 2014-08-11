@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "behat/behat": "2.4.*@stable",
         "behat/mink": "1.4.*@stable",
-        "behat/mink-extension": "*"
+        "behat/mink-extension": "*",
+        "behat/symfony2-extension": "*"
     },
     "scripts": {
         "post-install-cmd": [
