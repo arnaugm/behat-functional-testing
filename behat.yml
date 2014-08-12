@@ -3,4 +3,7 @@ default:
         Behat\Symfony2Extension\Extension:
             mink_driver: true
         Behat\MinkExtension\Extension:
+            base_url: http://localhost
             default_session: 'symfony2'
+            show_auto: true
+            show_cmd: firefox %s
