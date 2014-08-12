@@ -2,6 +2,7 @@ default:
     extensions:
         Behat\Symfony2Extension\Extension:
             mink_driver: true
+            bundle: TestsBehatTestingBundle
         Behat\MinkExtension\Extension:
             base_url: http://localhost
             default_session: 'symfony2'
