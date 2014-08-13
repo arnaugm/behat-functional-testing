@@ -4,7 +4,13 @@ default:
             mink_driver: true
             bundle: TestsBehatTestingBundle
         Behat\MinkExtension\Extension:
-            base_url: http://localhost
             default_session: 'symfony2'
             show_auto: true
             show_cmd: firefox %s
+
+zombie:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://testing.local/app_test.php
+            default_session: 'zombie'
+            zombie: ~
