@@ -14,3 +14,17 @@ zombie:
             base_url: http://testing.local/app_test.php
             default_session: 'zombie'
             zombie: ~
+
+sahi:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://testing.local/app_test.php
+            default_session: 'sahi'
+            sahi: ~
+
+selenium2:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://testing.local/app_test.php
+            default_session: 'selenium2'
+            selenium2: ~

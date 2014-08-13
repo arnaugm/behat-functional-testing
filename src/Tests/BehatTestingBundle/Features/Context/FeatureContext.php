@@ -2,6 +2,7 @@
 
 namespace Tests\BehatTestingBundle\Features\Context;
 
+use Behat\Mink\Exception\ElementNotFoundException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
@@ -47,16 +48,16 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $this->kernel = $kernel;
     }
 
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        $container = $this->kernel->getContainer();
-//        $container->get('some_service')->doSomethingWith($argument);
-//    }
-//
+    /**
+     * @Given /^(?:|I )select the "([^"]*)" radio button$/
+     */
+    public function iSelectTheRadioButton($option)
+    {
+        $label = $this->getSession()->getPage()->find('xpath', '//label[text()="' . $option . '"]');
+        $radio = $label->getParent();
+        if (null === $label || !$radio->has('css', 'input[type="radio"]')) {
+            throw new ElementNotFoundException($this->getSession(), 'form field', 'label', $option);
+        }
+        $this->fillField($option, $radio->find('css', 'input[type="radio"]')->getAttribute('value'));
+    }
 }

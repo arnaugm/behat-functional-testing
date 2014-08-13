@@ -1,3 +1,7 @@
 tests_behat_testing_homepage:
     path:     /hello/{name}
     defaults: { _controller: TestsBehatTestingBundle:Default:index }
+
+radio_button:
+    path:     /radio-button
+    defaults: { _controller: TestsBehatTestingBundle:Default:radioButton }
