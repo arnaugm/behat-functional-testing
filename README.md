@@ -10,4 +10,4 @@ To execute the tests with the diferent drivers use the defined profiles
 * Selenium2 -> bin/behat --profile selenium2
 
 ## Conclusions
-* It is possible to use the "check" option in radio buttons when using sahi, the other drivers complain expecting a checkbox. For radio buttons is necessary to create your own step, as there is none defined by default in the MinkExtension.
+* It is possible to use the "check" option in radio buttons when using sahi, the other drivers complain expecting a checkbox. For radio buttons it is necessary to create your own step, as there is none defined by default in the MinkExtension.

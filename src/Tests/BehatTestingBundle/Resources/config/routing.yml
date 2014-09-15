@@ -5,3 +5,7 @@ tests_behat_testing_homepage:
 radio_button:
     path:     /radio-button
     defaults: { _controller: TestsBehatTestingBundle:Default:radioButton }
+
+select_box_preselected:
+    path:     /select-box-preselected
+    defaults: { _controller: TestsBehatTestingBundle:Default:selectBoxPreselected }

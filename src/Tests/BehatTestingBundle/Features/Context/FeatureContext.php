@@ -3,6 +3,7 @@
 namespace Tests\BehatTestingBundle\Features\Context;
 
 use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Mink\Exception\ExpectationException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
@@ -53,11 +54,53 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function iSelectTheRadioButton($option)
     {
+        $option = $this->fixStepArgument($option);
+
         $label = $this->getSession()->getPage()->find('xpath', '//label[text()="' . $option . '"]');
-        $radio = $label->getParent();
-        if (null === $label || !$radio->has('css', 'input[type="radio"]')) {
+        if (null === $label) {
             throw new ElementNotFoundException($this->getSession(), 'form field', 'label', $option);
         }
+
+        $inputId = $label->getAttribute('for');
+        if (null === $inputId) {
+            throw new ElementNotFoundException($this->getSession(), 'form field', 'label', $option);
+        }
+
+        $radio = $this->getSession()->getPage()->find('css', '#' . $inputId);
+        if (!$radio->has('css', 'input[type="radio"]')) {
+            throw new ElementNotFoundException($this->getSession(), 'form field', 'label', $option);
+        }
+
         $this->fillField($option, $radio->find('css', 'input[type="radio"]')->getAttribute('value'));
+    }
+
+    /**
+     * @Then /^the selected option of the field "([^"]*)" should be "([^"]*)"$/
+     */
+    public function theSelectedOptionOfTheFieldShouldBe($field, $text)
+    {
+        $field = $this->fixStepArgument($field);
+        $text = $this->fixStepArgument($text);
+
+        $select = $this->getSession()->getPage()->findField($field);
+        if (null === $select) {
+            throw new ElementNotFoundException($this->getSession(), 'form field', 'id|name|label|value', $select);
+        }
+
+        $options = $select->findAll('css', 'option');
+        foreach ($options as $option) {
+            $optionText = $option->getText();
+            if ($option->isSelected()) {
+                if ($text == $optionText) {
+                    return;
+                } else {
+                    $message = sprintf('The selected option of "%s" is "%s" and should be "%s".', $field, $optionText, $text);
+                    throw new ExpectationException($message, $this->getSession());
+                }
+            }
+        }
+
+        $message = sprintf('The field "%s" does not have any option selected', $field);
+        throw new ExpectationException($message, $this->getSession());
     }
 }

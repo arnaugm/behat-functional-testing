@@ -4,6 +4,7 @@ namespace Tests\BehatTestingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Tests\BehatTestingBundle\Form\RadioButtonType;
+use Tests\BehatTestingBundle\Form\SelectBoxType;
 
 class DefaultController extends Controller
 {
@@ -17,6 +18,16 @@ class DefaultController extends Controller
         $form = $this->createForm(new RadioButtonType());
 
         return $this->render('TestsBehatTestingBundle:Default:radio-button.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    public function selectBoxPreselectedAction()
+    {
+        $form = $this->createForm(new SelectBoxType());
+        $form->get('select_box')->setData(1);
+
+        return $this->render('TestsBehatTestingBundle:Default:select-box-preselected.html.twig', array(
             'form' => $form->createView(),
         ));
     }
