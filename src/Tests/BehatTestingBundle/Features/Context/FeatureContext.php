@@ -82,16 +82,28 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $field = $this->fixStepArgument($field);
         $text = $this->fixStepArgument($text);
 
-        $select = $this->getSession()->getPage()->findField($field);
-        if (null === $select) {
-            throw new ElementNotFoundException($this->getSession(), 'form field', 'id|name|label|value', $select);
+        // Find all select boxes with the given label
+        $selects = $this->getSession()->getPage()->findAll('xpath', '//label[text()="' . $field . '"]/following::select[1]');
+        if (empty($selects)) {
+            throw new ElementNotFoundException($this->getSession(), 'select field', 'label', $field);
         }
 
-        $options = $select->findAll('css', 'option');
+        // Choose the first visible one among them
+        $visibleSelect = null;
+        foreach ($selects as $select) {
+            if ($select->isVisible()) {
+                $visibleSelect = $select;
+                break;
+            }
+        }
+        if (is_null($visibleSelect)) {
+            throw new ElementNotFoundException($this->getSession(), 'visible select field', 'label', $field);
+        }
+
+        // Check and compare the selected option
+        $options = $visibleSelect->findAll('css', 'option');
         foreach ($options as $option) {
             $optionText = $option->getText();
-//            echo $option->getText() . "\n";
-//            echo $option->getValue() . "\n";
             if ($option->isSelected()) {
                 if ($text == $optionText) {
                     return;
@@ -101,7 +113,6 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
                 }
             }
         }
-
         $message = sprintf('The field "%s" does not have any option selected', $field);
         throw new ExpectationException($message, $this->getSession());
     }
