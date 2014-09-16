@@ -31,4 +31,9 @@ class DefaultController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    public function bugSelectBoxAction()
+    {
+        return $this->render('TestsBehatTestingBundle:Default:bug-select-box.html.twig');
+    }
 }

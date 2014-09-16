@@ -9,3 +9,7 @@ radio_button:
 select_box_preselected:
     path:     /select-box-preselected
     defaults: { _controller: TestsBehatTestingBundle:Default:selectBoxPreselected }
+
+select_box_preselected:
+    path:     /bug-select-box
+    defaults: { _controller: TestsBehatTestingBundle:Default:bugSelectBox }

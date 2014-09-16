@@ -90,6 +90,8 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
         $options = $select->findAll('css', 'option');
         foreach ($options as $option) {
             $optionText = $option->getText();
+//            echo $option->getText() . "\n";
+//            echo $option->getValue() . "\n";
             if ($option->isSelected()) {
                 if ($text == $optionText) {
                     return;
