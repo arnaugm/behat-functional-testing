@@ -2,6 +2,8 @@
 
 namespace Tests\BehatTestingBundle\Features\Context;
 
+use Behat\Mink\Driver\SahiDriver;
+use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -56,7 +58,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     {
         // To avoid problems due to the size of the viewport when using Selenium2 + PhantomJS
         $driver = $this->getSession()->getDriver();
-        if ($driver instanceof \Behat\Mink\Driver\Selenium2Driver) {
+        if ($driver instanceof Selenium2Driver) {
             $this->getSession()->resizeWindow(1024, 768, 'current');
         }
     }
@@ -100,16 +102,22 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
             throw new ElementNotFoundException($this->getSession(), 'select field', 'label', $field);
         }
 
-        // Choose the first visible one among them
-        $visibleSelect = null;
-        foreach ($selects as $select) {
-            if ($select->isVisible()) {
-                $visibleSelect = $select;
-                break;
+        // Element visibility check is only supported by Sahi and Selenium2
+        $driver = $this->getSession()->getDriver();
+        if ($driver instanceof Selenium2Driver || $driver instanceof SahiDriver) {
+            // Choose the first visible one among them
+            $visibleSelect = null;
+            foreach ($selects as $select) {
+                if ($select->isVisible()) {
+                    $visibleSelect = $select;
+                    break;
+                }
             }
-        }
-        if (is_null($visibleSelect)) {
-            throw new ElementNotFoundException($this->getSession(), 'visible select field', 'label', $field);
+            if (is_null($visibleSelect)) {
+                throw new ElementNotFoundException($this->getSession(), 'visible select field', 'label', $field);
+            }
+        } else {
+            $visibleSelect = $selects[0];
         }
 
         // Check and compare the selected option
