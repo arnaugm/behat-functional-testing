@@ -9,6 +9,31 @@ To execute the tests with the diferent drivers use the defined profiles
 * Sahi -> bin/behat --profile sahi
 * Selenium2 -> bin/behat --profile selenium2
 
+## Used versions
+* PHP **5.5.9-1ubuntu4.4**
+* Selenium2 **2.42.2**
+* Sahi (open source) **4.4**
+* PhantomJS **1.9.7**
+* NodeJS **v0.10.28**
+* ZombieJS **2.0.0-alpha31**
+
+
+* behat/behat                          **v2.5.0**             Scenario-oriented BDD framework for PHP 5.3
+* behat/gherkin                        **v2.2.9**             Gherkin DSL parser for PHP 5.3
+* behat/mink                           **dev-master b887dad** Web acceptance testing framework for PHP 5.3
+* behat/mink-browserkit-driver         **dev-master a305d46** Symfony2 BrowserKit driver for Mink framework
+* behat/mink-extension                 **v1.3.3**             Mink extension for Behat
+* behat/mink-goutte-driver             **dev-master e4d2db0** Goutte driver for Mink framework
+* behat/mink-sahi-driver               **dev-master d2aa97b** Sahi.JS driver for Mink framework
+* behat/mink-selenium2-driver          **dev-master fef36e8** Selenium2 (WebDriver) driver for Mink framework
+* behat/mink-zombie-driver             **dev-master 5951cfa** Zombie.js driver for Mink framework
+* behat/sahi-client                    **dev-master 56a2224** Sahi.js client for PHP 5.3
+* behat/symfony2-extension             **v1.1.2**             Symfony2 framework extension for Behat
+* fabpot/goutte                        **v1.0.6**             A simple PHP Web Scraper
+* instaclick/php-webdriver             **dev-master a57b2bc** PHP WebDriver for Selenium 2
+* symfony/symfony                      **v2.3.17**            The Symfony PHP framework
+
+
 ## Conclusions
 
 ### Radio buttons
