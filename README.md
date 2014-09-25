@@ -1,13 +1,15 @@
 # behat-functional-testing
 
-Play with the different browsers supported by mink and run several behat tests with them.
+Play with the different browsers supported by ***mink*** and run several ***behat*** tests with them.
 
-To execute the tests with the diferent drivers use the defined profiles
+To execute the tests with the diferent drivers use the defined profiles:
 
 * Symfony2 -> bin/behat
 * Zombie.js -> bin/behat --profile zombie
-* Sahi -> bin/behat --profile sahi
-* Selenium2 -> bin/behat --profile selenium2
+* Sahi + Chrome -> bin/behat --profile sahi
+* Sahi + PhantomJS -> bin/behat --profile sahi_phantomjs
+* Selenium2 + Chrome -> bin/behat --profile selenium2
+* Selenium2 + PhantomJS -> bin/behat --profile selenium2_phantomjs
 
 ## Used versions
 * PHP **5.5.9-1ubuntu4.4**
@@ -17,7 +19,7 @@ To execute the tests with the diferent drivers use the defined profiles
 * NodeJS **v0.10.28**
 * ZombieJS **2.0.0-alpha31**
 
-
+---
 * behat/behat                          **v2.5.0**             Scenario-oriented BDD framework for PHP 5.3
 * behat/gherkin                        **v2.2.9**             Gherkin DSL parser for PHP 5.3
 * behat/mink                           **dev-master b887dad** Web acceptance testing framework for PHP 5.3

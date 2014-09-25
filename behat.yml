@@ -20,7 +20,14 @@ sahi:
         Behat\MinkExtension\Extension:
             base_url: http://testing.local/app_test.php
             default_session: 'sahi'
-#            browser_name: chrome
+            browser_name: chrome
+            sahi: ~
+
+sahi_phantomjs:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://testing.local/app_test.php
+            default_session: 'sahi'
             browser_name: phantomjs
             sahi: ~
 
@@ -29,6 +36,13 @@ selenium2:
         Behat\MinkExtension\Extension:
             base_url: http://testing.local/app_test.php
             default_session: 'selenium2'
-#            browser_name: chrome
+            browser_name: chrome
+            selenium2: ~
+
+selenium2_phantomjs:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://testing.local/app_test.php
+            default_session: 'selenium2'
             browser_name: phantomjs
             selenium2: ~
