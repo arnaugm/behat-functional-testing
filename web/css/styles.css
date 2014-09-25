@@ -1,0 +1,12 @@
+.wrapper {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+}
+
+.centered {
+    width: 800px;
+    max-height: 600px;
+    margin-left: -400px;
+    margin-top: -300px;
+}

@@ -13,3 +13,7 @@ select_box_preselected:
 select_box_preselected:
     path:     /bug-select-box
     defaults: { _controller: TestsBehatTestingBundle:Default:bugSelectBox }
+
+centered:
+    path:     /centered
+    defaults: { _controller: TestsBehatTestingBundle:Default:centered }

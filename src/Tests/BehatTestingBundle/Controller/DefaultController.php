@@ -36,4 +36,9 @@ class DefaultController extends Controller
     {
         return $this->render('TestsBehatTestingBundle:Default:bug-select-box.html.twig');
     }
+
+    public function centeredAction()
+    {
+        return $this->render('TestsBehatTestingBundle:Default:centered.html.twig');
+    }
 }

@@ -50,6 +50,18 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
     }
 
     /**
+     * @BeforeScenario
+     */
+    public function before($event)
+    {
+        // To avoid problems due to the size of the viewport when using Selenium2 + PhantomJS
+        $driver = $this->getSession()->getDriver();
+        if ($driver instanceof \Behat\Mink\Driver\Selenium2Driver) {
+            $this->getSession()->resizeWindow(1024, 768, 'current');
+        }
+    }
+
+    /**
      * @Given /^(?:|I )select the "([^"]*)" radio button$/
      */
     public function iSelectTheRadioButton($option)
