@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="content">
+        <textarea>Text to be replaced</textarea>
+    </div>
+
+    <script>
+        var content = document.querySelector('#content textarea');
+        content.value = 'Replaced text';
+    </script>
+{% endblock %}

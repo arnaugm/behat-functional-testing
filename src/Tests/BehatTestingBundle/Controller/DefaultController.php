@@ -41,4 +41,9 @@ class DefaultController extends Controller
     {
         return $this->render('TestsBehatTestingBundle:Default:centered.html.twig');
     }
+
+    public function javascriptReplaceAction()
+    {
+        return $this->render('TestsBehatTestingBundle:Default:javascript_replace.html.twig');
+    }
 }

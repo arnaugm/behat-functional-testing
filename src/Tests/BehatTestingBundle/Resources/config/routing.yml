@@ -17,3 +17,7 @@ bug_select_box:
 centered:
     path:     /centered
     defaults: { _controller: TestsBehatTestingBundle:Default:centered }
+
+javascript_replace:
+    path:     /javascript_replace
+    defaults: { _controller: TestsBehatTestingBundle:Default:javascriptReplace }
